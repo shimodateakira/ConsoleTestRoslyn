@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace ConsoleTestRoslyn
 {
@@ -10,7 +8,9 @@ namespace ConsoleTestRoslyn
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Hello, World!");
+            string text = "Console.WriteLine(\"Hello, World!\");";
+            var script = CSharpScript.Create(text, ScriptOptions.Default.AddImports("System"));
+            var result = script.RunAsync();
 
             Console.ReadKey();
         }
